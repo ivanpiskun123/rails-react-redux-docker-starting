@@ -1,5 +1,5 @@
 class Departament < ApplicationRecord
 
     has_many :documents
-    validates :name
+    validates :name, presence: true
 end
