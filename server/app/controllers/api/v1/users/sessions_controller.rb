@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Users::SessionsController < Devise::SessionsController
-  skip_before_action :authenticate
+  respond_to :json
+  
   # before_action :configure_sign_in_params, only: [:create]
   # respond_to :json
   # GET /resource/sign_in
@@ -10,9 +11,21 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    user = User.find_by_email(params[:user][:email])
+
+    if user && user.valid_password?(params[:user][:password])
+      token = user.generate_jwt
+      render json: 
+      {
+       token:  token.to_json,
+       user_id: user.id,
+       is_admin: user.is_chief
+      }
+    else
+      render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
@@ -26,27 +39,14 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-  private
+  # private
 
-  def respond_with(resource, _opts = {})
-    render json: {
-      status: {code: 200, message: 'Logged in sucessfully.', id: current_user.id}
-    }, status: :ok
-  end
+  # def respond_with(resource, _opts = {})
+  #   render json: {
+  #     status: {code: 200, message: 'Logged in sucessfully.', id: current_api_v1_user.id}
+  #   }, status: :ok
+  # end
 
-  def respond_to_on_destroy
-    if current_user
-      render json: {
-        status: 200,
-        message: "logged out successfully"
-      }, status: :ok
-    else
-      render json: {
-        status: 401,
-        message: "Couldn't find an active session."
-      }, status: :unauthorized
-    end
-  end
 
 
 end

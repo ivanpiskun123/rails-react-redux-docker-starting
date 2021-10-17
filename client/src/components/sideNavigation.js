@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from "../assets/mdb-react.png";
+import logo from "../assets/images/brand.jpg";
 import { MDBListGroup, MDBListGroupItem, MDBIcon } from 'mdbreact';
 import { NavLink } from 'react-router-dom';
 
-const TopNavigation = () => {
+const TopNavigation = ({logOut}) => {
     return (
         <div className="sidebar-fixed position-fixed">
             <a href="#!" className="logo-wrapper waves-effect">
@@ -12,32 +12,27 @@ const TopNavigation = () => {
             <MDBListGroup className="list-group-flush">
                 <NavLink exact={true} to="/" activeClassName="activeClass">
                     <MDBListGroupItem>
-                        <MDBIcon icon="chart-pie" className="mr-3"/>
-                        Dashboard
-                    </MDBListGroupItem>
-                </NavLink>
-                <NavLink to="/profile" activeClassName="activeClass">
-                    <MDBListGroupItem>
                         <MDBIcon icon="user" className="mr-3"/>
-                        Profile
+                        Мой профиль
                     </MDBListGroupItem>
                 </NavLink>
-                <NavLink to="/tables" activeClassName="activeClass">
+                <NavLink to="/docs" activeClassName="activeClass">
                     <MDBListGroupItem>
-                        <MDBIcon icon="table" className="mr-3"/>
-                        Tables
+                        <MDBIcon icon="file-alt" className="mr-3"/>
+                        Все документы
                     </MDBListGroupItem>
                 </NavLink>
-                <NavLink to="/maps" activeClassName="activeClass">
+                <NavLink to="/executors" activeClassName="activeClass">
                     <MDBListGroupItem>
-                        <MDBIcon icon="map" className="mr-3"/>
-                        Maps
+                        <MDBIcon icon="users" className="mr-3"/>
+                        Исполнители
                     </MDBListGroupItem>
                 </NavLink>
-                <NavLink to="/404" activeClassName="activeClass">
+                
+                <NavLink to="/signout" onClick={logOut} activeClassName="activeClass">
                     <MDBListGroupItem>
-                        <MDBIcon icon="exclamation" className="mr-3"/>
-                        404
+                        <MDBIcon icon="sign-out-alt" className="mr-3"/>
+                        Выйти
                     </MDBListGroupItem>
                 </NavLink>
             </MDBListGroup>

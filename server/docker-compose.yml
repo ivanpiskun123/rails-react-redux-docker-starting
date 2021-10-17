@@ -4,6 +4,8 @@ services:
     web:
         build: .
         image: rails-documentflow
+        stdin_open: true
+        tty: true
         restart: "no"
         environment:
             - DBHOST=postgresql

@@ -91,7 +91,7 @@ position_id: 2, email: "user3@gmail.com",
 
 ### DEPARTAMENTS
 def random_deadline
-    Date.today - rand(6..25).days
+    Date.today + rand(-3..15).days
 end
 
 def filename(i)
@@ -114,6 +114,20 @@ content_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.d
      d = Document.create!({
         user_id: 1,  name: "Руководство по заграничным закупкам",departament_id: rand(1..4), type_id: rand(1..3),
         status: false,  deadline: random_deadline
+    })
+    d.file.attach(io: File.open(path_to_files+filename(0) ), filename: filename(0), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 1,  name: "Руководство по импортным закупкам",departament_id: rand(1..4), type_id: rand(1..3),
+        status: true,  deadline: Date.today
+    })
+    d.file.attach(io: File.open(path_to_files+filename(0) ), filename: filename(0), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 1,  name: "Руководство по экспортным закупкам",departament_id: rand(1..4), type_id: rand(1..3),
+        status: true,  deadline: Date.today
     })
     d.file.attach(io: File.open(path_to_files+filename(0) ), filename: filename(0), content_type: content_type  )
     d.save
@@ -147,8 +161,36 @@ content_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.d
     d.save
 
     d = Document.create!({
+        user_id: 2,  name: "Заблуждения в расчетах НРРО",departament_id: rand(1..4), type_id: rand(1..3),
+        status: true,  deadline: Date.today
+    })
+    d.file.attach(io: File.open(path_to_files+filename(4) ), filename: filename(4), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
         user_id: 3,  name: "Новая эра в торговле химикатами",departament_id: rand(1..4), type_id: rand(1..3),
         status: false,  deadline: random_deadline
+    })
+    d.file.attach(io: File.open(path_to_files+filename(5) ), filename: filename(5), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 3,  name: "Новая эра в торговле ядохимикатами",departament_id: rand(1..4), type_id: rand(1..3),
+        status: true,  deadline: Date.today
+    })
+    d.file.attach(io: File.open(path_to_files+filename(5) ), filename: filename(5), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 3,  name: "Объемные постаки в РФ",departament_id: rand(1..4), type_id: rand(1..3),
+        status: false,  deadline: random_deadline
+    })
+    d.file.attach(io: File.open(path_to_files+filename(5) ), filename: filename(5), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 3,  name: "Уменьшение кол-ва ошибок в ААПС",departament_id: rand(1..4), type_id: rand(1..3),
+        status: true,  deadline: Date.today
     })
     d.file.attach(io: File.open(path_to_files+filename(5) ), filename: filename(5), content_type: content_type  )
     d.save
@@ -169,7 +211,14 @@ content_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.d
 
     d = Document.create!({
         user_id: 4,  name: "Принципы обоснования нарушений ОРР",departament_id: rand(1..4), type_id: rand(1..3),
-        status: false,  deadline: random_deadline
+        status: true,  deadline: Date.today
+    })
+    d.file.attach(io: File.open(path_to_files+filename(8) ), filename: filename(8), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 4,  name: "Принципы обоснования нарушений ЗРФ",departament_id: rand(1..4), type_id: rand(1..3),
+        status: true,  deadline: Date.today
     })
     d.file.attach(io: File.open(path_to_files+filename(8) ), filename: filename(8), content_type: content_type  )
     d.save
@@ -196,6 +245,20 @@ content_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.d
     d.save
 
     d = Document.create!({
+        user_id: 5,  name: "Методы экспертных оценок в РФС",departament_id: rand(1..4), type_id: rand(1..3),
+        status: true,  deadline: Date.today
+    })
+    d.file.attach(io: File.open(path_to_files+filename(11) ), filename: filename(11), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 5,  name: "Мастер-классы ведущих экономистов",departament_id: rand(1..4), type_id: rand(1..3),
+        status: false,  deadline: random_deadline
+    })
+    d.file.attach(io: File.open(path_to_files+filename(11) ), filename: filename(11), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
         user_id: 6,  name: "Установление РДД в 2022",departament_id: rand(1..4), type_id: rand(1..3),
         status: false,  deadline: random_deadline
     })
@@ -204,6 +267,27 @@ content_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.d
 
     d = Document.create!({
         user_id: 6,  name: "Установление РДУА в 2022",departament_id: rand(1..4), type_id: rand(1..3),
+        status: false,  deadline: random_deadline
+    })
+    d.file.attach(io: File.open(path_to_files+filename(13) ), filename: filename(13), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 6,  name: "Биржевые тенденции 2021",departament_id: rand(1..4), type_id: rand(1..3),
+        status: true,  deadline: Date.today
+    })
+    d.file.attach(io: File.open(path_to_files+filename(13) ), filename: filename(13), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 6,  name: "Биржевые тенденции 2022",departament_id: rand(1..4), type_id: rand(1..3),
+        status: true,  deadline: Date.today
+    })
+    d.file.attach(io: File.open(path_to_files+filename(13) ), filename: filename(13), content_type: content_type  )
+    d.save
+
+    d = Document.create!({
+        user_id: 6,  name: "Остаточные стоимости экспорта",departament_id: rand(1..4), type_id: rand(1..3),
         status: false,  deadline: random_deadline
     })
     d.file.attach(io: File.open(path_to_files+filename(13) ), filename: filename(13), content_type: content_type  )

@@ -16,8 +16,14 @@ class Api::V1::DocumentsController < ApplicationController
     end
 
     def create
-        d = Document.create(params[:document])
-        if d.id?
+        d = Document.new
+        d.name=params[:name]
+        d.user_id = params[:user_id]
+        d.type_id = params[:type_id]
+        d.departament_id = params[:departament_id]
+        d.status = false
+        d.deadline = Date.parse(params[:deadline])
+        if d.save!
             render json: {
                 status: {code: 200, message: 'Document created sucessfully.'}
             }, status: :ok
@@ -26,11 +32,20 @@ class Api::V1::DocumentsController < ApplicationController
                 status: {code: 500, message: 'Can\'t create Document.'}
               }, status: 500
         end
+
+        content_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        path_to_files = "#{Rails.root}/app/assets/doc_files/"
+
+        d.file.attach(io: File.open(path_to_files+params[:file] ), filename: params[:file], content_type: content_type  )
+        
+
     end
 
 
     def update
-        if Document.find(params[:document][:id]).update(params[:document])
+        
+        if Document.find(params[:id]).update(status: params[:status].to_i)
+            
             render json: {
                 status: {code: 200, message: 'Document updated sucessfully.'}
             }, status: :ok
