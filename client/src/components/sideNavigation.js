@@ -16,12 +16,7 @@ const TopNavigation = ({logOut}) => {
                         Мой профиль
                     </MDBListGroupItem>
                 </NavLink>
-                <NavLink to="/docs" activeClassName="activeClass">
-                    <MDBListGroupItem>
-                        <MDBIcon icon="file-alt" className="mr-3"/>
-                        Все документы
-                    </MDBListGroupItem>
-                </NavLink>
+               
                 <NavLink to="/executors" activeClassName="activeClass">
                     <MDBListGroupItem>
                         <MDBIcon icon="users" className="mr-3"/>
